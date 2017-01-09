@@ -1,0 +1,40 @@
+// Place all the styles related to the Books controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.center-text{
+  text-align: center;
+}
+
+#book-list{
+  ul{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+
+    li.attributes{
+      font-size: 1.25em;
+      font-weight: 600;
+    }
+    li.book{
+      margin-bottom: 1em;
+    }
+  }
+
+  a{
+    color: #F02A71 !important;
+    cursor: pointer;
+  }
+}
+
+
+#book-form{
+  margin-bottom: 1em;
+
+  label{
+    font-weight: 700;
+  }
+}
+.hidden{
+  display: none;
+}

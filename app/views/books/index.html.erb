@@ -1,0 +1,62 @@
+<p id="notice"><%= notice %></p>
+<h1>Books</h1>
+
+<div id="book-list">
+  <h4>
+    <a @click="toggleForm">
+      Add another book
+      <em class="fa fa-plus-square"></em>
+    </a>
+  </h4>
+  <!-- Toggable Form -->
+  <div id="book-form" v-show="showForm">
+    <form class="row" v-on:submit.prevent="submitForm">
+        <div class="form-group col-md-4" :class="{ 'has-danger': hasError('title')}">
+        <label for="newbook">Book Title</label>
+        <input type="text" name="title" class="form-control" id="newbook" value="">
+      </div>
+      <div class="col-md-12"></div>
+
+      <div class="form-group col-md-4" :class="{'has-danger': hasError('pages')}">
+        <label for="newpages">Number of Pages</label>
+        <input type="number" name="pages" class="form-control" id="newpages" value="">
+      </div>
+      <div class="col-md-12"></div>
+
+      <div class="form-group col-md-4" :class="{'has-danger': hasError('reference')}">
+        <label for="newreference">Book Reference Code</label>
+        <input type="text" name="reference" class="form-control" id="newreference" value="">
+      </div>
+      <div class="col-md-12">&nbsp;</div>
+
+      <div class="form-group col-md-12">
+        <input type="submit" class="btn btn-info" value="Add Book"></input>
+      </div>
+    </form>
+  </div>
+
+
+  <ul v-if="books.length >= 1">
+    <li class="row attributes">
+      <div class="col-md-3">Title</div>
+      <div class="col-md-2">Pages</div>
+      <div class="col-md-2">Reference</div>
+      <div class="col-md-2">Action ('s)</div>
+    </li>
+
+    <li v-for="book in orderedBooks" track-by="title" class="book">
+      <div class="row">
+        <div class="col-md-3">{{book.title}}</div>
+        <div class="col-md-2">{{book.pages}}</div>
+        <div class="col-md-2">{{book.reference}}</div>
+        <div class="col-md-2">
+          <button type="button" class="btn btn-danger btn-sm" @click="remove(book)">x</button>
+        </div>
+      </div>
+    </li>
+  </ul>
+
+  <div v-else>
+    No books are currently listed.
+  </div>
+</div>

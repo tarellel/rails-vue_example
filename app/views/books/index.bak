@@ -1,0 +1,70 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Books</h1>
+<div id="book-list">
+  <ul v-if="books.length >= 1">
+    <li class="row attributes">
+      <div class="col-md-3">Title</div>
+      <div class="col-md-2">Pages</div>
+      <div class="col-md-2">Reference</div>
+      <div class="col-md-2">Action ('s)</div>
+    </li>
+    <book v-for="book in books" :book="book" v-on:remove="remove"></book>
+  </ul>
+  <div v-else>
+    No books are currently listed.
+  </div>
+</div>
+
+<!-- Template used to display the books -->
+<template id="book">
+  <li class="book">
+    <div class="row">
+      <div class="col-md-3">{{ book.title }}</div>
+      <div class="col-md-2">{{book.pages}}</div>
+      <div class="col-md-2">{{book.reference}}</div>
+      <div class="col-md-2">
+        <!-- <button type="button" class="btn btn-danger btn-sm" @click="$emit('remove')">x</botton> -->
+          <button type="button" class="btn btn-danger btn-sm" @click="remove">x</botton>
+      </div>
+    </div>
+  </li>
+</template>
+
+
+<h2>Add another book</h2>
+
+
+<script type="text/javascript">
+  window.Event = new Vue();
+  Vue.component('book',{
+    props: ['book'],
+    template: '#book',
+
+    methods: {
+      removeBook(){
+        //console.log(this.book.id)
+        // Event.$emit('deleteBook');
+        Event.$emit('remove', this.book);
+      }
+    }
+  });
+
+
+
+
+  var books = new Vue({
+    el: '#book-list',
+    data: {
+      books: <%== @books ? @books.to_json(only: [:id, :title, :pages, :reference]) : "[]" %>
+    },
+
+    methods: {
+      remove(){
+        alert('foo')
+        //let index = this.books.indexOf(book);
+        //this.books.splice((this), 1);
+      }
+    }
+  });
+</script>

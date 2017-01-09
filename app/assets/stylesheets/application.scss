@@ -1,0 +1,16 @@
+@import 'bootstrap';
+
+// application
+@import 'books';
+
+
+body{
+  color: #495664;
+  font-family: 'Open Sans', sans-serif;
+  // font-size: 14px;
+}
+
+
+input.form-control{
+  color: #99B0C2 !important
+}
